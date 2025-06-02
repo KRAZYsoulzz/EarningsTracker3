@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
         // For resolving the KGP plugin itself, if necessary from here
         maven { url = uri("https://download.jetbrains.com/kotlin/native/builds") }
+        maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/native") } // Added here too
     }
 }
 
@@ -23,6 +24,11 @@ dependencyResolutionManagement {
         maven {
             name = "KotlinNativeCompilerRepository"
             url = uri("https://download.jetbrains.com/kotlin/native/builds")
+        }
+        // Added new repository for Kotlin Native
+        maven {
+            name = "KotlinNativeCompilerRepositorySpace"
+            url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/native")
         }
     }
 }
