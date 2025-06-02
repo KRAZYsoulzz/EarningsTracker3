@@ -1,0 +1,11 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.jetbrainsCompose) apply false
+    alias(libs.plugins.sqlDelight) apply false // Added for SQLDelight
+    // If you have KSP for other purposes, ensure its plugin is declared, e.g.:
+    // alias(libs.plugins.googleKsp) apply false
+}

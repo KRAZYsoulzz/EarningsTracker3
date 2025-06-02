@@ -1,0 +1,80 @@
+[versions]
+# Kotlin and Android Build Tools
+agp = "8.3.2"  # Or your current Android Gradle Plugin version
+kotlin = "1.9.23" # Ensure this matches your project's Kotlin version
+kotlinMultiplatform = "1.9.23" # Typically matches 'kotlin'
+ksp = "1.9.23-1.0.19" # KSP version aligned with Kotlin 1.9.23
+
+# Jetpack Compose
+composeCompiler = "1.5.11" # Jetpack Compose Compiler for Kotlin 1.9.23
+composeBom = "2024.05.00"
+androidxActivityCompose = "1.9.0"
+androidxNavigationCompose = "2.7.7"
+
+# Jetbrains Compose Multiplatform (for shared UI, iOS, Desktop etc.)
+jetbrainsCompose = "1.6.10" # Version for the org.jetbrains.compose plugin
+
+# AndroidX Libraries
+androidxCoreKtx = "1.13.1"
+androidxLifecycle = "2.8.0"
+androidxDataStore = "1.1.1"
+
+# Database
+sqlDelight = "2.0.1" # SQLDelight version
+
+# Coroutines
+kotlinxCoroutines = "1.8.0"
+
+# Testing
+junit = "4.13.2"
+androidxTestExtJunit = "1.1.5"
+androidxEspressoCore = "3.5.1"
+
+[libraries]
+# Kotlinx
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+
+# AndroidX Core & Lifecycle
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCoreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" } # For Compose UI
+
+# AndroidX Activity & Navigation
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivityCompose" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigationCompose" }
+
+# Jetpack Compose
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" } # For @Preview
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" } # For @Preview
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+# DataStore
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+
+# SQLDelight
+sqlDelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
+sqlDelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
+sqlDelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" } # For iOS and other native targets
+# sqlDelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" } # Optional
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExtJunit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspressoCore" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" } # For Compose UI tests
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlinMultiplatform" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" } # Compose Multiplatform plugin
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+googleKsp = {id = "com.google.devtools.ksp", version.ref = "ksp"} # KSP Plugin

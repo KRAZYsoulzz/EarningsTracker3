@@ -1,0 +1,40 @@
+-- ExpenseItem.sq
+
+CREATE TABLE ExpenseItem (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, -- Will map to Long in Kotlin
+    date TEXT NOT NULL,
+    name TEXT NOT NULL,
+    amount REAL NOT NULL
+);
+
+selectAll:
+SELECT * FROM ExpenseItem;
+
+selectById:
+SELECT * FROM ExpenseItem WHERE id = ?;
+
+-- For inserting a new item or replacing an existing one based on id
+insertItem:
+INSERT OR REPLACE INTO ExpenseItem(id, date, name, amount)
+VALUES (?, ?, ?, ?);
+
+-- For upserting: if id is NULL, it's an INSERT, otherwise it's an UPDATE
+upsertItem:
+INSERT INTO ExpenseItem (id, date, name, amount)
+VALUES (?, ?, ?, ?)
+ON CONFLICT(id) DO UPDATE SET
+    date = excluded.date,
+    name = excluded.name,
+    amount = excluded.amount;
+
+deleteById:
+DELETE FROM ExpenseItem WHERE id = ?;
+
+getExpensesForDate:
+SELECT * FROM ExpenseItem WHERE date = ? ORDER BY id ASC;
+
+getExpensesForDateRange:
+SELECT * FROM ExpenseItem WHERE date BETWEEN ? AND ? ORDER BY date ASC, id ASC;
+
+getTotalExpensesForDateRange:
+SELECT SUM(amount) FROM ExpenseItem WHERE date BETWEEN ? AND ?;
